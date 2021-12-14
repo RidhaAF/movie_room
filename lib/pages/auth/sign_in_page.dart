@@ -15,7 +15,7 @@ class _State extends State<SignInPage> {
     Widget title() {
       return Text(
         'Welcome to\nMovie Room🍿',
-        style: TextStyle(
+        style: GoogleFonts.inter(
           fontSize: 36,
           fontWeight: bold,
           color: whiteColor,
@@ -26,7 +26,7 @@ class _State extends State<SignInPage> {
     Widget subtitle() {
       return Text(
         'We give you the best recommendation movie and series.',
-        style: TextStyle(
+        style: GoogleFonts.inter(
           fontSize: 12,
           color: secondaryColor,
         ),
@@ -45,7 +45,9 @@ class _State extends State<SignInPage> {
 
     Widget signInButton() {
       return ElevatedButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamedAndRemoveUntil(context, '/main', (route) => false);
+        },
         style: darkGrayButtonStyle,
         child: Container(
           height: 48,

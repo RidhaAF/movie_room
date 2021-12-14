@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movie_room/pages/auth/sign_in_page.dart';
+import 'package:movie_room/pages/home/home_page.dart';
+import 'package:movie_room/pages/main_page.dart';
 import 'package:movie_room/pages/splash_page.dart';
 
 void main() {
@@ -16,6 +18,8 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => const SplashPage(),
         '/sign-in': (context) => const SignInPage(),
+        '/main': (context) => const MainPage(),
+        '/home': (context) => const HomePage(),
       },
     );
   }
