@@ -29,37 +29,42 @@ class _HomePageState extends State<HomePage> {
         margin: EdgeInsets.only(bottom: defaultMargin),
         child: Column(
           children: [
-            CarouselSlider(
-              options: CarouselOptions(
-                height: 200,
-                autoPlay: true,
-                viewportFraction: 0.93,
-                autoPlayInterval: const Duration(seconds: 5),
-                onPageChanged: (index, carouselReason) {
-                  setState(() {
-                    _current = index;
-                  });
-                },
-              ),
-              carouselController: _controller,
-              items: imgList
-                  .map(
-                    (item) => Container(
-                      margin: EdgeInsets.fromLTRB(4, defaultMargin, 4, 8),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(defaultRadius),
-                        ),
-                        child: Image.network(
-                          item,
-                          fit: BoxFit.cover,
-                          height: 200,
-                          width: double.infinity,
+            GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, '/movie/detail');
+              },
+              child: CarouselSlider(
+                options: CarouselOptions(
+                  height: 200,
+                  autoPlay: true,
+                  viewportFraction: 0.93,
+                  autoPlayInterval: const Duration(seconds: 5),
+                  onPageChanged: (index, carouselReason) {
+                    setState(() {
+                      _current = index;
+                    });
+                  },
+                ),
+                carouselController: _controller,
+                items: imgList
+                    .map(
+                      (item) => Container(
+                        margin: EdgeInsets.fromLTRB(4, defaultMargin, 4, 8),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(defaultRadius),
+                          ),
+                          child: Image.network(
+                            item,
+                            fit: BoxFit.cover,
+                            height: 200,
+                            width: double.infinity,
+                          ),
                         ),
                       ),
-                    ),
-                  )
-                  .toList(),
+                    )
+                    .toList(),
+              ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -88,27 +93,32 @@ class _HomePageState extends State<HomePage> {
         margin: EdgeInsets.only(bottom: defaultMargin),
         child: Column(
           children: [
-            Row(
-              children: [
-                Padding(
-                  padding: EdgeInsets.fromLTRB(defaultMargin, 0, 8, 0),
-                  child: Text(
-                    'Latest Movies',
-                    style: GoogleFonts.inter(
-                      color: whiteColor,
-                      fontSize: 18,
-                      fontWeight: bold,
+            GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, '/latest-movies');
+              },
+              child: Row(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(defaultMargin, 0, 8, 0),
+                    child: Text(
+                      'Latest Movies',
+                      style: GoogleFonts.inter(
+                        color: whiteColor,
+                        fontSize: 18,
+                        fontWeight: bold,
+                      ),
                     ),
                   ),
-                ),
-                Image.asset(
-                  'assets/images/ic_see_all.png',
-                  width: 16,
-                ),
-              ],
+                  Image.asset(
+                    'assets/images/ic_see_all.png',
+                    width: 16,
+                  ),
+                ],
+              ),
             ),
-            const SizedBox(height: 8),
             Container(
+              margin: const EdgeInsets.only(top: 8),
               height: 162,
               child: ListView(
                 scrollDirection: Axis.horizontal,
@@ -166,27 +176,32 @@ class _HomePageState extends State<HomePage> {
         margin: EdgeInsets.only(bottom: defaultMargin),
         child: Column(
           children: [
-            Row(
-              children: [
-                Padding(
-                  padding: EdgeInsets.fromLTRB(defaultMargin, 0, 8, 0),
-                  child: Text(
-                    'Latest Series',
-                    style: GoogleFonts.inter(
-                      color: whiteColor,
-                      fontSize: 18,
-                      fontWeight: bold,
+            GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, '/latest-series');
+              },
+              child: Row(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(defaultMargin, 0, 8, 0),
+                    child: Text(
+                      'Latest Series',
+                      style: GoogleFonts.inter(
+                        color: whiteColor,
+                        fontSize: 18,
+                        fontWeight: bold,
+                      ),
                     ),
                   ),
-                ),
-                Image.asset(
-                  'assets/images/ic_see_all.png',
-                  width: 16,
-                ),
-              ],
+                  Image.asset(
+                    'assets/images/ic_see_all.png',
+                    width: 16,
+                  ),
+                ],
+              ),
             ),
-            const SizedBox(height: 8),
             Container(
+              margin: const EdgeInsets.only(top: 8),
               height: 162,
               child: ListView(
                 scrollDirection: Axis.horizontal,
@@ -244,27 +259,32 @@ class _HomePageState extends State<HomePage> {
         margin: EdgeInsets.only(bottom: defaultMargin),
         child: Column(
           children: [
-            Row(
-              children: [
-                Padding(
-                  padding: EdgeInsets.fromLTRB(defaultMargin, 0, 8, 0),
-                  child: Text(
-                    'Popular',
-                    style: GoogleFonts.inter(
-                      color: whiteColor,
-                      fontSize: 18,
-                      fontWeight: bold,
+            GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, '/popular');
+              },
+              child: Row(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(defaultMargin, 0, 8, 0),
+                    child: Text(
+                      'Popular',
+                      style: GoogleFonts.inter(
+                        color: whiteColor,
+                        fontSize: 18,
+                        fontWeight: bold,
+                      ),
                     ),
                   ),
-                ),
-                Image.asset(
-                  'assets/images/ic_see_all.png',
-                  width: 16,
-                ),
-              ],
+                  Image.asset(
+                    'assets/images/ic_see_all.png',
+                    width: 16,
+                  ),
+                ],
+              ),
             ),
-            const SizedBox(height: 8),
             Container(
+              margin: const EdgeInsets.only(top: 8),
               height: 162,
               child: ListView(
                 scrollDirection: Axis.horizontal,
@@ -322,27 +342,32 @@ class _HomePageState extends State<HomePage> {
         margin: EdgeInsets.only(bottom: defaultMargin),
         child: Column(
           children: [
-            Row(
-              children: [
-                Padding(
-                  padding: EdgeInsets.fromLTRB(defaultMargin, 0, 8, 0),
-                  child: Text(
-                    'Upcoming',
-                    style: GoogleFonts.inter(
-                      color: whiteColor,
-                      fontSize: 18,
-                      fontWeight: bold,
+            GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, '/upcoming');
+              },
+              child: Row(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(defaultMargin, 0, 8, 0),
+                    child: Text(
+                      'Upcoming',
+                      style: GoogleFonts.inter(
+                        color: whiteColor,
+                        fontSize: 18,
+                        fontWeight: bold,
+                      ),
                     ),
                   ),
-                ),
-                Image.asset(
-                  'assets/images/ic_see_all.png',
-                  width: 16,
-                ),
-              ],
+                  Image.asset(
+                    'assets/images/ic_see_all.png',
+                    width: 16,
+                  ),
+                ],
+              ),
             ),
-            const SizedBox(height: 8),
             Container(
+              margin: const EdgeInsets.only(top: 8),
               height: 162,
               child: ListView(
                 scrollDirection: Axis.horizontal,

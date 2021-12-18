@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:movie_room/pages/auth/sign_in_page.dart';
 import 'package:movie_room/pages/home/home_page.dart';
+import 'package:movie_room/pages/home/latest_movies_page.dart';
+import 'package:movie_room/pages/home/latest_series_page.dart';
+import 'package:movie_room/pages/home/movie_detail_page.dart';
+import 'package:movie_room/pages/home/popular_page.dart';
+import 'package:movie_room/pages/home/upcoming_page.dart';
 import 'package:movie_room/pages/main_page.dart';
 import 'package:movie_room/pages/profile/profile_page.dart';
 import 'package:movie_room/pages/search/search_page.dart';
@@ -23,6 +28,11 @@ class MyApp extends StatelessWidget {
         '/sign-in': (context) => const SignInPage(),
         '/main': (context) => const MainPage(),
         '/home': (context) => const HomePage(),
+        '/latest-movies': (context) => const LatestMoviesPage(),
+        '/latest-series': (context) => const LatestSeriesPage(),
+        '/popular': (context) => const PopularPage(),
+        '/upcoming': (context) => const UpcomingPage(),
+        '/movie/detail': (context) => const MovieDetailPage(),
         '/search': (context) => const SearchPage(),
         '/watchlist': (context) => const WatchlistPage(),
         '/profile': (context) => const ProfilePage(),
