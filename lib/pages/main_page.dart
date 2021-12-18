@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:movie_room/pages/home/home_page.dart';
+import 'package:movie_room/pages/profile/profile_page.dart';
+import 'package:movie_room/pages/search/search_page.dart';
+import 'package:movie_room/pages/watchlist/watchlist_page.dart';
 import 'package:movie_room/themes/theme.dart';
 
 class MainPage extends StatefulWidget {
@@ -14,9 +17,9 @@ class _MainPageState extends State<MainPage> {
   int _selectedIndex = 0;
   final List<Widget> _widgetOptions = <Widget>[
     const HomePage(),
-    const Text('Search'),
-    const Text('Watchlist'),
-    const Text('Profile'),
+    const SearchPage(),
+    const WatchlistPage(),
+    const ProfilePage(),
   ];
 
   void _onItemTapped(int index) {
@@ -40,21 +43,41 @@ class _MainPageState extends State<MainPage> {
         unselectedLabelStyle: GoogleFonts.inter(
           fontSize: 12,
         ),
-        items: const [
+        items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Image.asset(
+              'assets/images/ic_home.png',
+              width: 24,
+              height: 24,
+              color: _selectedIndex == 0 ? primaryColor : mutedColor,
+            ),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.search),
+            icon: Image.asset(
+              'assets/images/ic_search.png',
+              width: 24,
+              height: 24,
+              color: _selectedIndex == 1 ? primaryColor : mutedColor,
+            ),
             label: 'Search',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.list),
+            icon: Image.asset(
+              'assets/images/ic_watchlist.png',
+              width: 24,
+              height: 24,
+              color: _selectedIndex == 2 ? primaryColor : mutedColor,
+            ),
             label: 'Watchlist',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
+            icon: Image.asset(
+              'assets/images/ic_profile.png',
+              width: 24,
+              height: 24,
+              color: _selectedIndex == 3 ? primaryColor : mutedColor,
+            ),
             label: 'Profile',
           ),
         ],
