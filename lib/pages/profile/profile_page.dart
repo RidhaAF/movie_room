@@ -148,7 +148,7 @@ class _ProfilePageState extends State<ProfilePage> {
             header(),
             SizedBox(height: defaultMargin),
             darkMode(),
-            const SizedBox(height: 124),
+            SizedBox(height: MediaQuery.of(context).size.height * 0.2),
             signOutButton(),
             const SizedBox(height: 8),
             appVersion(),

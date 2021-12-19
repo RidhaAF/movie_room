@@ -86,9 +86,9 @@ class _State extends State<SignInPage> {
             children: [
               title(),
               subtitle(),
-              const SizedBox(height: 170),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.15),
               illustration(),
-              const SizedBox(height: 170),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.15),
               signInButton(),
             ],
           ),
