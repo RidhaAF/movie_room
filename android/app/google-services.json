@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1072368984255",
+    "project_id": "movie-room-328e9",
+    "storage_bucket": "movie-room-328e9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1072368984255:android:23837b16431847914b660a",
+        "android_client_info": {
+          "package_name": "com.ridhaaf.movie_room"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1072368984255-7mc1ia1q2loi2qo06j5kesml1hcpm7ne.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ridhaaf.movie_room",
+            "certificate_hash": "d75813602859e3f329232ff9be3dd5e41b75c68e"
+          }
+        },
+        {
+          "client_id": "1072368984255-ah03v042elrfl8gm5em7lv2pp1a9kmar.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJ7jJ2UhiiwXeTIyoRSdRqU-pwjnTQkjA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1072368984255-ah03v042elrfl8gm5em7lv2pp1a9kmar.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

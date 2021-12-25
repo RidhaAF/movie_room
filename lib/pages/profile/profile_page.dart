@@ -1,6 +1,16 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:movie_room/themes/theme.dart';
+
+GoogleSignIn _googleSignIn = GoogleSignIn(
+  scopes: [
+    'profile',
+    'email',
+  ],
+);
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -10,7 +20,22 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  User? user = FirebaseAuth.instance.currentUser;
   bool _value = true;
+
+  Future<void> _handleSignOut() async {
+    try {
+      await _googleSignIn.disconnect();
+      Navigator.pushNamedAndRemoveUntil(context, '/sign-in', (route) => false);
+      if (kDebugMode) {
+        print('Signed out');
+      }
+    } catch (error) {
+      if (kDebugMode) {
+        print(error);
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +51,7 @@ class _ProfilePageState extends State<ProfilePage> {
             ClipRRect(
               borderRadius: BorderRadius.circular(50),
               child: Image.network(
-                'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png',
+                user!.photoURL!,
                 width: 70,
                 height: 70,
               ),
@@ -36,7 +61,7 @@ class _ProfilePageState extends State<ProfilePage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Ridha Ahmad Firdaus',
+                  user!.displayName!,
                   style: GoogleFonts.inter(
                     color: whiteColor,
                     fontSize: 18,
@@ -44,7 +69,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                 ),
                 Text(
-                  'ridhaaf@gmail.com',
+                  user!.email!,
                   style: GoogleFonts.inter(
                     color: secondaryColor,
                     fontSize: 14,
@@ -96,8 +121,7 @@ class _ProfilePageState extends State<ProfilePage> {
     Widget signOutButton() {
       return ElevatedButton(
         onPressed: () {
-          Navigator.pushNamedAndRemoveUntil(
-              context, '/sign-in', (route) => false);
+          _handleSignOut();
         },
         style: primaryButtonStyle,
         child: Container(

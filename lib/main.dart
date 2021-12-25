@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_room/pages/auth/sign_in_page.dart';
 import 'package:movie_room/pages/home/home_page.dart';
@@ -13,7 +14,9 @@ import 'package:movie_room/pages/search/search_page.dart';
 import 'package:movie_room/pages/splash_page.dart';
 import 'package:movie_room/pages/watchlist/watchlist_page.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 

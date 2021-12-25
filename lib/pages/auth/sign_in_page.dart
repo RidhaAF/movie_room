@@ -1,6 +1,17 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:movie_room/themes/theme.dart';
+
+FirebaseAuth _auth = FirebaseAuth.instance;
+GoogleSignIn _googleSignIn = GoogleSignIn(
+  scopes: [
+    'profile',
+    'email',
+  ],
+);
 
 class SignInPage extends StatefulWidget {
   const SignInPage({Key? key}) : super(key: key);
@@ -10,6 +21,28 @@ class SignInPage extends StatefulWidget {
 }
 
 class _State extends State<SignInPage> {
+  Future<void> _handleSignIn() async {
+    try {
+      final GoogleSignInAccount? googleSignInAccount =
+          await _googleSignIn.signIn();
+      final GoogleSignInAuthentication googleSignInAuthentication =
+          await googleSignInAccount!.authentication;
+      final AuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleSignInAuthentication.accessToken,
+        idToken: googleSignInAuthentication.idToken,
+      );
+      await _auth.signInWithCredential(credential);
+      Navigator.pushNamedAndRemoveUntil(context, '/main', (route) => false);
+      if (kDebugMode) {
+        print('Signed in');
+      }
+    } catch (error) {
+      if (kDebugMode) {
+        print(error);
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     Widget title() {
@@ -46,7 +79,7 @@ class _State extends State<SignInPage> {
     Widget signInButton() {
       return ElevatedButton(
         onPressed: () {
-          Navigator.pushNamedAndRemoveUntil(context, '/main', (route) => false);
+          _handleSignIn();
         },
         style: darkGrayButtonStyle,
         child: Container(
