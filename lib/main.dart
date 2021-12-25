@@ -5,6 +5,7 @@ import 'package:movie_room/pages/home/latest_movies_page.dart';
 import 'package:movie_room/pages/home/latest_series_page.dart';
 import 'package:movie_room/pages/home/movie_detail_page.dart';
 import 'package:movie_room/pages/home/popular_page.dart';
+import 'package:movie_room/pages/home/series_detail_page.dart';
 import 'package:movie_room/pages/home/upcoming_page.dart';
 import 'package:movie_room/pages/main_page.dart';
 import 'package:movie_room/pages/profile/profile_page.dart';
@@ -33,6 +34,7 @@ class MyApp extends StatelessWidget {
         '/popular': (context) => const PopularPage(),
         '/upcoming': (context) => const UpcomingPage(),
         '/movie/detail': (context) => const MovieDetailPage(),
+        '/series/detail': (context) => const SeriesDetailPage(),
         '/search': (context) => const SearchPage(),
         '/watchlist': (context) => const WatchlistPage(),
         '/profile': (context) => const ProfilePage(),

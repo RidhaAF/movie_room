@@ -206,12 +206,17 @@ class _HomePageState extends State<HomePage> {
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: [
-                  Container(
-                    margin: EdgeInsets.fromLTRB(defaultMargin, 0, 4, 0),
-                    width: 114,
-                    decoration: BoxDecoration(
-                      color: secondaryColor,
-                      borderRadius: BorderRadius.circular(defaultRadius),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/series/detail');
+                    },
+                    child: Container(
+                      margin: EdgeInsets.fromLTRB(defaultMargin, 0, 4, 0),
+                      width: 114,
+                      decoration: BoxDecoration(
+                        color: secondaryColor,
+                        borderRadius: BorderRadius.circular(defaultRadius),
+                      ),
                     ),
                   ),
                   Container(
