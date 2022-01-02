@@ -14,6 +14,7 @@ class _SeriesDetailPageState extends State<SeriesDetailPage>
     with SingleTickerProviderStateMixin {
   bool isWatchlist = false;
   int selectedIndex = 0;
+  var top = 0.0;
 
   late TabController _tabController;
 
@@ -35,54 +36,6 @@ class _SeriesDetailPageState extends State<SeriesDetailPage>
 
   @override
   Widget build(BuildContext context) {
-    Widget seriesHeader() {
-      return Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          GestureDetector(
-            onTap: () {
-              Navigator.pop(context);
-            },
-            child: Container(
-              height: 32,
-              width: 32,
-              decoration: BoxDecoration(
-                color: whiteColor.withOpacity(0.5),
-                shape: BoxShape.circle,
-              ),
-              child: Icon(
-                Icons.chevron_left,
-                color: whiteColor,
-                size: 24,
-              ),
-            ),
-          ),
-          GestureDetector(
-            onTap: () {
-              setState(() {
-                isWatchlist = !isWatchlist;
-              });
-            },
-            child: Container(
-              height: 32,
-              width: 32,
-              decoration: BoxDecoration(
-                color: whiteColor.withOpacity(0.5),
-                shape: BoxShape.circle,
-              ),
-              child: Icon(
-                isWatchlist == false
-                    ? Icons.bookmark_outline
-                    : Icons.bookmark_outlined,
-                color: whiteColor,
-                size: 24,
-              ),
-            ),
-          ),
-        ],
-      );
-    }
-
     Widget seriesBackground() {
       return Container(
         height: 250,
@@ -101,121 +54,122 @@ class _SeriesDetailPageState extends State<SeriesDetailPage>
 
     Widget seriesPoster() {
       return Container(
-        margin: EdgeInsets.only(bottom: defaultMargin),
+        margin: EdgeInsets.symmetric(horizontal: defaultMargin),
         height: 162,
         width: 114,
         decoration: BoxDecoration(
           color: secondaryColor,
           borderRadius: BorderRadius.circular(defaultRadius),
           image: const DecorationImage(
-              image: NetworkImage(
-                  'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/pqzjCxPVc9TkVgGRWeAoMmyqkZV.jpg'),
-              fit: BoxFit.cover),
+            image: NetworkImage(
+                'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/pqzjCxPVc9TkVgGRWeAoMmyqkZV.jpg'),
+            fit: BoxFit.cover,
+          ),
         ),
       );
     }
 
     Widget seriesInfo() {
-      return Container(
-        padding: const EdgeInsets.fromLTRB(138, 8, 16, 0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Hawkeye',
-              style: GoogleFonts.inter(
-                color: whiteColor,
-                fontSize: 24,
-                fontWeight: bold,
-              ),
-            ),
-            const SizedBox(height: 8),
-            Text(
-              '2021 • TV-14 • 1 Season',
-              style: GoogleFonts.inter(
-                color: whiteColor,
-                fontSize: 12,
-              ),
-            ),
-            const SizedBox(height: 8),
-            Row(
-              children: [
-                Text(
-                  'Genre ',
-                  style: GoogleFonts.inter(
-                    color: whiteColor,
-                    fontSize: 12,
-                  ),
-                ),
-                Text(
-                  'Action & Adventure, Drama',
-                  style: GoogleFonts.inter(
-                    color: whiteColor,
-                    fontSize: 12,
-                    fontWeight: bold,
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 8),
-            Row(
-              children: [
-                Text(
-                  'Director ',
-                  style: GoogleFonts.inter(
-                    color: whiteColor,
-                    fontSize: 12,
-                  ),
-                ),
-                Text(
-                  'Jonathan Igla',
-                  style: GoogleFonts.inter(
-                    color: whiteColor,
-                    fontSize: 12,
-                    fontWeight: bold,
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      );
-    }
-
-    Widget seriesOverview() {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Overview',
+            'Hawkeye',
             style: GoogleFonts.inter(
               color: whiteColor,
-              fontSize: 18,
-              fontWeight: semiBold,
+              fontSize: 24,
+              fontWeight: bold,
             ),
           ),
           const SizedBox(height: 8),
-          ReadMoreText(
-            "Former Avenger Clint Barton has a seemingly simple mission: get back to his family for Christmas. Possible? Maybe with the help of Kate Bishop, a 22-year-old archer with dreams of becoming a superhero. The two are forced to work together when a presence from Barton’s past threatens to derail far more than the festive spirit.",
+          Text(
+            '2021 • TV-14 • 1 Season',
             style: GoogleFonts.inter(
               color: whiteColor,
               fontSize: 12,
             ),
-            textAlign: TextAlign.justify,
-            trimLines: 5,
-            colorClickableText: whiteColor,
-            trimMode: TrimMode.Line,
-            trimCollapsedText: '... read more',
-            trimExpandedText: ' show less',
-            delimiter: '',
-            lessStyle: GoogleFonts.inter(
-              fontWeight: semiBold,
-            ),
-            moreStyle: GoogleFonts.inter(
-              fontWeight: semiBold,
-            ),
+          ),
+          const SizedBox(height: 8),
+          Row(
+            children: [
+              Text(
+                'Genre ',
+                style: GoogleFonts.inter(
+                  color: whiteColor,
+                  fontSize: 12,
+                ),
+              ),
+              Text(
+                'Action & Adventure, Drama',
+                style: GoogleFonts.inter(
+                  color: whiteColor,
+                  fontSize: 12,
+                  fontWeight: bold,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 8),
+          Row(
+            children: [
+              Text(
+                'Director ',
+                style: GoogleFonts.inter(
+                  color: whiteColor,
+                  fontSize: 12,
+                ),
+              ),
+              Text(
+                'Jonathan Igla',
+                style: GoogleFonts.inter(
+                  color: whiteColor,
+                  fontSize: 12,
+                  fontWeight: bold,
+                ),
+              ),
+            ],
           ),
         ],
+      );
+    }
+
+    Widget seriesOverview() {
+      return Container(
+        padding: EdgeInsets.symmetric(horizontal: defaultMargin),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Overview',
+              style: GoogleFonts.inter(
+                color: whiteColor,
+                fontSize: 18,
+                fontWeight: semiBold,
+              ),
+            ),
+            const SizedBox(height: 8),
+            ReadMoreText(
+              "Former Avenger Clint Barton has a seemingly simple mission: get back to his family for Christmas. Possible? Maybe with the help of Kate Bishop, a 22-year-old archer with dreams of becoming a superhero. The two are forced to work together when a presence from Barton’s past threatens to derail far more than the festive spirit.",
+              style: GoogleFonts.inter(
+                color: whiteColor,
+                fontSize: 12,
+              ),
+              textAlign: TextAlign.justify,
+              trimLines: 5,
+              colorClickableText: whiteColor,
+              trimMode: TrimMode.Line,
+              trimCollapsedText: '... read more',
+              trimExpandedText: ' show less',
+              delimiter: '',
+              lessStyle: GoogleFonts.inter(
+                fontWeight: semiBold,
+              ),
+              moreStyle: GoogleFonts.inter(
+                fontWeight: semiBold,
+              ),
+            ),
+          ],
+        ),
       );
     }
 
@@ -483,6 +437,7 @@ class _SeriesDetailPageState extends State<SeriesDetailPage>
               image: const DecorationImage(
                 image: NetworkImage(
                     'https://www.themoviedb.org/t/p/w138_and_h175_face/dxSDWkiVaC6JYjrV3XRAZI7HOSS.jpg'),
+                fit: BoxFit.cover,
               ),
             ),
           ),
@@ -638,43 +593,108 @@ class _SeriesDetailPageState extends State<SeriesDetailPage>
 
     return Scaffold(
       backgroundColor: backgroundColor1,
-      body: SingleChildScrollView(
-        child: Stack(
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                seriesBackground(),
-                seriesInfo(),
-              ],
-            ),
-            SafeArea(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.all(defaultMargin),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        seriesHeader(),
-                        const SizedBox(height: 140),
-                        seriesPoster(),
-                        seriesOverview(),
-                      ],
-                    ),
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            pinned: true,
+            expandedHeight: 250.0,
+            backgroundColor: backgroundColor1,
+            centerTitle: true,
+            elevation: 0,
+            automaticallyImplyLeading: false,
+            leading: GestureDetector(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: Padding(
+                padding: EdgeInsets.only(left: defaultMargin),
+                child: Container(
+                  height: 36,
+                  width: 36,
+                  decoration: BoxDecoration(
+                    color: backgroundColor1.withOpacity(0.7),
+                    shape: BoxShape.circle,
                   ),
-                  seriesSeason(),
-                  const SizedBox(height: 16),
-                  seriesRating(),
-                  const SizedBox(height: 16),
-                  seriesCast(),
-                  seriesRecommendation(),
-                ],
+                  child: Icon(
+                    Icons.chevron_left,
+                    color: whiteColor,
+                    size: 32,
+                    semanticLabel: 'Back',
+                  ),
+                ),
               ),
             ),
-          ],
-        ),
+            leadingWidth: 48,
+            actions: [
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    isWatchlist = !isWatchlist;
+                  });
+                },
+                child: Padding(
+                  padding: EdgeInsets.only(right: defaultMargin),
+                  child: Container(
+                    height: 32,
+                    width: 32,
+                    decoration: BoxDecoration(
+                      color: backgroundColor1.withOpacity(0.7),
+                      shape: BoxShape.circle,
+                    ),
+                    child: Icon(
+                      isWatchlist == false
+                          ? Icons.bookmark_outline
+                          : Icons.bookmark_outlined,
+                      color: whiteColor,
+                      semanticLabel: 'Add to Watchlist',
+                    ),
+                  ),
+                ),
+              ),
+            ],
+            flexibleSpace: LayoutBuilder(
+                builder: (BuildContext context, BoxConstraints constraints) {
+              top = constraints.biggest.height;
+              return FlexibleSpaceBar(
+                centerTitle: true,
+                title: AnimatedOpacity(
+                  duration: const Duration(milliseconds: 300),
+                  opacity: top == 80.0 ? 1.0 : 0.0,
+                  child: Text(
+                    'Hawkeye',
+                    style: GoogleFonts.inter(
+                      color: whiteColor,
+                      fontWeight: bold,
+                    ),
+                  ),
+                ),
+                collapseMode: CollapseMode.parallax,
+                background: seriesBackground(),
+              );
+            }),
+          ),
+          SliverList(
+            delegate: SliverChildListDelegate(
+              [
+                const SizedBox(height: 16),
+                Row(
+                  children: [
+                    seriesPoster(),
+                    seriesInfo(),
+                  ],
+                ),
+                const SizedBox(height: 16),
+                seriesOverview(),
+                seriesSeason(),
+                const SizedBox(height: 16),
+                seriesRating(),
+                const SizedBox(height: 16),
+                seriesCast(),
+                seriesRecommendation(),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
